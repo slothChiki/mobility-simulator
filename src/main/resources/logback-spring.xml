@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--property: 설정파일에서 사용될 변수값-->
+    <!--로그 파일 저장 위치-->
+    <property name="LOGS_PATH" value="/game/log/notificator"/>
+
+    <!--appender: log의 형태를 설정함-->
+    <!--LOG_STDOUT-->
+    <appender name="LOG_INFO" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!--        <layout class="ch.qos.logback.classic.PatternLayout">-->
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%thread] %cyan(%-5level) %logger{35} - %msg%n</pattern>
+        </encoder>
+        <!--        </layout>-->
+    </appender>
+    <appender name="LOG_ERROR" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!--        <layout class="ch.qos.logback.classic.PatternLayout">-->
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%thread] %red(%-5level) %logger{35} - %msg%n</pattern>
+        </encoder>
+        <!--        </layout>-->
+    </appender>
+
+    <!--LOG_CONSOLE-->
+    <appender name="LOG_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--LOG_FILES-->
+    <appender name="LOG_FILES" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS_PATH}/logback.log</file>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%thread] %cyan(%-5level) %logger{35} - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOGS_PATH}/logback.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxFileSize>10MB</maxFileSize>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+
+                <!-- kb, mb, gb -->
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!--LOG_ERROR_FILES-->
+    <appender name="LOG_ERROR_FILES" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS_PATH}/error.log</file>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%thread] %red(%-5level) %logger{35} - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOGS_PATH}/error.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxFileSize>10MB</maxFileSize>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+
+                <!-- kb, mb, gb -->
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!--logger: 설정한 appender를 참조하여 PACKAGE, LEVEL을 설정함-->
+    <!--    <logger name="com.hive.login" level="INFO">-->
+    <!--        <appender-ref ref="LOG_CONSOLE" />-->
+    <!--    </logger>-->
+    <!--    <logger name="com.hive.login" level="INFO">-->
+    <!--        <appender-ref ref="LOG_FILES" />-->
+    <!--    </logger>-->
+
+    <!--root: 전역-->
+    <root level="INFO">
+        <appender-ref ref="LOG_INFO" />
+        <appender-ref ref="LOG_FILES"/>
+        <appender-ref ref="LOG_ERROR"/>
+        <appender-ref ref="LOG_ERROR_FILES" />
+    </root>
+
+</configuration>
