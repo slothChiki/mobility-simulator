@@ -1,4 +1,4 @@
-package com.com2us.web3.mass_data_processor.config;
+package com.com2us.mobility.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;

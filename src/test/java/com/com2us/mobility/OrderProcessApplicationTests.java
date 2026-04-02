@@ -1,4 +1,4 @@
-package com.com2us.web3.mass_data_processor;
+package com.com2us.mobility;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

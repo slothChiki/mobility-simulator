@@ -119,7 +119,7 @@ ERROR in ch.qos.logback.core.pattern.parser.Compiler@2b62442c - Failed to create
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
-	at com.com2us.web3.mass_data_processor.OrderProcessApplication.main(OrderProcessApplication.java:10)
+	at com.com2us.web3.mobility.OrderProcessApplication.main(OrderProcessApplication.java:10)
 Caused by: java.lang.IllegalStateException: Logback configuration error detected: 
 ERROR in ch.qos.logback.core.pattern.parser.Compiler@545de5a4 - There is no conversion class registered for composite conversion word [clr]
 ERROR in ch.qos.logback.core.pattern.parser.Compiler@545de5a4 - Failed to create converter for [%clr] keyword

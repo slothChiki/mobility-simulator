@@ -1,4 +1,4 @@
-package com.com2us.web3.mass_data_processor.test;
+package com.com2us.mobility.test;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
