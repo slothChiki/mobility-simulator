@@ -59,3 +59,4 @@ INSERT INTO vehicle_states (vehicle_id, status, updated_at)
 SELECT v.id, 'AVAILABLE', NOW()
 FROM vehicles v
 WHERE NOT EXISTS (SELECT 1 FROM vehicle_states vs WHERE vs.vehicle_id = v.id);
+

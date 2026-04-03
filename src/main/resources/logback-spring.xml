@@ -79,6 +79,19 @@
         </rollingPolicy>
     </appender>
 
+    <appender name="VIEW_LOG" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+            <evaluator class="ch.qos.logback.classic.boolex.OnMarkerEvaluator">
+                <marker>DEBUG</marker>
+            </evaluator>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%thread] %magenta(%-5level) %boldCyan%logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
     <!--logger: 설정한 appender를 참조하여 PACKAGE, LEVEL을 설정함-->
     <!--    <logger name="com.hive.login" level="INFO">-->
     <!--        <appender-ref ref="LOG_CONSOLE" />-->
@@ -89,6 +102,7 @@
 
     <!--root: 전역-->
     <root level="INFO">
+        <appender-ref ref="VIEW_LOG" />  <!-- ✅ 추가! DEBUG 필터 없이 모두 출력 -->
         <appender-ref ref="LOG_INFO" />
         <appender-ref ref="LOG_FILES"/>
         <appender-ref ref="LOG_ERROR"/>

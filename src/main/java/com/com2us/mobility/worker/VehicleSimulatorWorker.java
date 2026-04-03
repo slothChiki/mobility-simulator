@@ -24,11 +24,16 @@ public class VehicleSimulatorWorker {
     private static final String LOCK_KEY = "lock:vehicle-simulator";
     private static final Duration LOCK_TTL = Duration.ofSeconds(1);
 
-    // 서울 좌표 범위
-    private static final double LAT_MIN = 37.4;
-    private static final double LAT_MAX = 37.7;
-    private static final double LNG_MIN = 126.8;
-    private static final double LNG_MAX = 127.2;
+//    // 서울 좌표 범위
+//    private static final double LAT_MIN = 37.4;
+//    private static final double LAT_MAX = 37.7;
+//    private static final double LNG_MIN = 126.8;
+//    private static final double LNG_MAX = 127.2;
+    // 금천구 좌표 범위
+    private static final double LAT_MIN = 37.430;
+    private static final double LAT_MAX = 37.490;
+    private static final double LNG_MIN = 126.870;
+    private static final double LNG_MAX = 126.930;
 
     // 차량별 현재 위치 (메모리)
     private final Map<Long, double[]> locationMap = new ConcurrentHashMap<>();

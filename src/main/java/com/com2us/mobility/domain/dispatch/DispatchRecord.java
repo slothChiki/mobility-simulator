@@ -31,7 +31,7 @@ public class DispatchRecord {
     private VehicleGrade requestedGrade;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     private DispatchStatus status;
 
     @Column(nullable = false)
@@ -74,6 +74,18 @@ public class DispatchRecord {
     // 비즈니스 메서드
     // ─────────────────────────────────────────
 
+    /** 배차 처리 중 (워커가 잡은 상태) */
+    public void processing() {
+        this.status = DispatchStatus.PROCESSING;
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    /** 워커 실패 시 REQUESTED로 되돌림 */
+    public void workerFailed() {
+        this.status = DispatchStatus.WORKER_FAILED;
+        this.updatedAt = LocalDateTime.now();
+    }
+
     /** 배차 완료 */
     public void dispatch(Vehicle vehicle) {
         this.vehicle = vehicle;
@@ -104,6 +116,12 @@ public class DispatchRecord {
     /** 승객 취소 */
     public void cancel() {
         this.status = DispatchStatus.CANCELLED;
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    /** 배차 실패 (재시도 후에도 차량 없음) */
+    public void fail() {
+        this.status = DispatchStatus.FAILED;
         this.updatedAt = LocalDateTime.now();
     }
 }

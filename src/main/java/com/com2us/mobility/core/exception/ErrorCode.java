@@ -5,8 +5,15 @@ import lombok.Getter;
 @Getter
 public enum ErrorCode {
 
+    // 공통
+    INTERNAL_SERVER_ERROR(5000, "서버 내부 오류"),
+
     // Kafka
     KAFKA_PUBLISH_FAILED(5001, "Kafka 메시지 전송 실패"),
+
+    // Redis
+    REDIS_OPERATION_FAILED(5002, "Redis 작업 실패"),
+    REDIS_CONNECTION_FAILED(5003, "Redis 연결 실패"),
 
     // Dispatch
     DISPATCH_NOT_FOUND(4001, "배차 정보를 찾을 수 없음"),

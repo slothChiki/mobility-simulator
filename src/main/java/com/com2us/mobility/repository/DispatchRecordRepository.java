@@ -16,4 +16,7 @@ public interface DispatchRecordRepository extends JpaRepository<DispatchRecord, 
 
     // 상태별 배차 기록
     List<DispatchRecord> findByStatus(DispatchStatus status);
+
+    // 상태별 배차 기록
+    List<DispatchRecord> findTop10ByStatusInOrderByIdDesc(List<DispatchStatus> statusList);
 }
